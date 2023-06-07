@@ -62,13 +62,19 @@ return require('packer').startup(function(use)
     use {
         "folke/todo-comments.nvim",
         requires = "nvim-lua/plenary.nvim",
-        config = function() require("todo-comments").setup {} end
     }
-    use('airblade/vim-gitgutter')
     use 'nvim-tree/nvim-web-devicons'
     use('Bekaboo/dropbar.nvim')
     use {
         'nvim-lualine/lualine.nvim',
         requires = { 'nvim-tree/nvim-web-devicons', opt = true }
+    }
+    use 'airblade/vim-gitgutter'
+    use 'windwp/nvim-autopairs'
+    use {
+        'numToStr/Comment.nvim',
+        config = function()
+            require('Comment').setup()
+        end
     }
 end)
