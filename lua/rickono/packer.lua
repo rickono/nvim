@@ -10,7 +10,10 @@ return require('packer').startup(function(use)
     use {
         'nvim-telescope/telescope.nvim', tag = '0.1.1',
         -- or                            , branch = '0.1.x',
-        requires = { { 'nvim-lua/plenary.nvim' } }
+        requires = {
+            { 'nvim-lua/plenary.nvim' },
+            { 'nvim-telescope/telescope-live-grep-args.nvim' }
+        }
     }
 
     use { "catppuccin/nvim", as = "catppuccin" }
@@ -49,8 +52,11 @@ return require('packer').startup(function(use)
         -- follow latest release.
         tag = "v1.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
         -- install jsregexp (optional!:).
-        run = "make install_jsregexp"
+        run = "make install_jsregexp",
+        dependencies = { "rafamadriz/friendly-snippets" },
     })
+    use "rafamadriz/friendly-snippets"
+
 
     use 'lervag/vimtex'
     use 'tpope/vim-dispatch'
@@ -70,11 +76,19 @@ return require('packer').startup(function(use)
         requires = { 'nvim-tree/nvim-web-devicons', opt = true }
     }
     use 'airblade/vim-gitgutter'
-    use 'windwp/nvim-autopairs'
     use {
         'numToStr/Comment.nvim',
         config = function()
             require('Comment').setup()
         end
     }
+    use {
+        "nvim-telescope/telescope-file-browser.nvim",
+        requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
+    }
+    use { 'akinsho/git-conflict.nvim', tag = "*", config = function()
+        require('git-conflict').setup()
+    end }
+
+    use 'darrikonn/vim-gofmt'
 end)

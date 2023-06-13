@@ -12,5 +12,9 @@ return {
     { trig = "foo" },
     { t("Another snippet.") }
   ),
+  require("luasnip").snippet(
+    { trig = "sahil" },
+    { t("sahil.upadhyay") }
+  ),
 }
 
